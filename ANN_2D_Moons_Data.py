@@ -5,7 +5,10 @@ from sklearn.model_selection import train_test_split
 
 import tensorflow as tf
 
-df = pd.read_csv("Moons 2D Overlap.csv", header=None)
+# Remove '#' from dataset you would like to build ANN for
+#df = pd.read_csv("Moons 2D Wide.csv", header=None)
+#df = pd.read_csv("Moons 2D Narrow.csv", header=None)
+#df = pd.read_csv("Moons 2D Overlap.csv", header=None)
 
 
 # for 2D df has 4 columns: (c0_x1, c0_x2, c1_x1, c1_2)
@@ -78,23 +81,14 @@ plt.figure(facecolor="white")
 ax = plt.gca()
 ax.set_facecolor("white")
 
+plt.plot(history.history["accuracy"], label="train accuracy")
+plt.plot(history.history["val_accuracy"], label="val accuracy")
 plt.plot(history.history["loss"], label="train loss")
 plt.plot(history.history["val_loss"], label="val loss")
 
 plt.xlabel("epoch")
 plt.legend()
-plt.title("Training loss and validation loss")
-plt.show()
-
-
-plt.figure(facecolor="white")
-ax = plt.gca()
-ax.set_facecolor("white")
-plt.plot(history.history["accuracy"], label="train accuracy")
-plt.plot(history.history["val_accuracy"], label="val accuracy")
-plt.xlabel("epoch")
-plt.legend()
-plt.title("Training accuracy and validation accuracy")
+plt.title("Training history")
 plt.show()
 
 

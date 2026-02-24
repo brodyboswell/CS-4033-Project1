@@ -6,9 +6,10 @@ from sklearn.model_selection import train_test_split
 import tensorflow as tf
 
 # Remove '#' from dataset you would like to build ANN for
+#df = pd.read_csv("Gaussian 3D Wide.csv", header=None)
 #df = pd.read_csv("Gaussian 3D Narrow.csv", header=None)
 #df = pd.read_csv("Gaussian 3D Overlap.csv", header=None)
-#df = pd.read_csv("Gaussian 3D Wide.csv", header=None)
+
 
 
 # for 2D df has 4 columns: (c0_x1, c0_x2, c1_x1, c1_2)
@@ -51,5 +52,19 @@ history = model.fit(X_train, y_train, batch_size=32, epochs=150, validation_data
 test_loss, test_accuracy = model.evaluate(X_test, y_test)
 print(f'Test accuracy: {test_accuracy}')
 model.evaluate(X_test, y_test)
+
+plt.figure(facecolor="white")
+ax = plt.gca()
+ax.set_facecolor("white")
+
+plt.plot(history.history["accuracy"], label="train accuracy")
+plt.plot(history.history["val_accuracy"], label="val accuracy")
+plt.plot(history.history["loss"], label="train loss")
+plt.plot(history.history["val_loss"], label="val loss")
+
+plt.xlabel("epoch")
+plt.legend()
+plt.title("Training history")
+plt.show()
 
 # make sure to credit https://www.youtube.com/watch?v=VtRLrQ3Ev-U

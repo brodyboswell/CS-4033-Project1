@@ -5,7 +5,10 @@ from sklearn.model_selection import train_test_split
 
 import tensorflow as tf
 
-df = pd.read_csv("Moons 2D Wide.csv", header=None)
+# Remove '#' from dataset you would like to build ANN for
+#df = pd.read_csv("Gaussian 2D Wide.csv", header=None)
+#df = pd.read_csv("Gaussian 2D Narrow.csv", header=None)
+#df = pd.read_csv("Gaussian 2D Overlap.csv", header=None)
 
 
 # for 2D df has 4 columns: (c0_x1, c0_x2, c1_x1, c1_2)
@@ -32,13 +35,13 @@ X_valid, X_test, y_valid, y_test = train_test_split(X_temp, y_temp, test_size=0.
 
 
 model = tf.keras.Sequential([
-tf.keras.layers.Dense(12, activation='relu'), # 1st inner layer, 8 neurons, relu as activation function
-tf.keras.layers.Dense(12, activation='relu'), # 2nd inner layer, 8 neurons, relu as activation function
+tf.keras.layers.Dense(12, activation='relu'), # 1st inner layer, 12 neurons, relu as activation function
+tf.keras.layers.Dense(12, activation='relu'), # 2nd inner layer, 12 neurons, relu as activation function
 tf.keras.layers.Dense(1, activation='sigmoid') # output layer, 1 neuron for binary classification
 ])
 
-# define learning rate as 0.001
-model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+# define learning rate as 0.005
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.005),
               loss=tf.keras.losses.BinaryCrossentropy(),
               metrics=['accuracy'])
 
